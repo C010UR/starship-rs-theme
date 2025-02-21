@@ -1,0 +1,75 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = '''
+[╭ $directory$git_branch$git_commit$git_state$git_progress$git_status]() $fill [$status$cmd_duration$time]()
+[╰ $character]()'''
+
+add_newline = false
+
+[character]
+success_symbol = '[](bold green)'
+error_symbol = '[](bold red)'
+
+[cmd_duration]
+format = '[$duration]($style) / '
+min_time = 0
+show_milliseconds = true
+show_notifications = true
+min_time_to_notify = 45000
+
+[directory]
+format = ' [$path]($style)[$read_only]($read_only_style) '
+read_only = ' '
+use_os_path_sep = false
+style = ''
+
+[git_branch]
+format = '[$symbol $branch(:$remote_branch)]($style) '
+style = 'bold yellow'
+symbol = '󰘬'
+
+[git_commit]
+format = '[$hash]($style) '
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+
+[git_metrics]
+
+[git_status]
+format = '$ahead_behind$conflicted$deleted$renamed$modified$staged$untracked$stashed'
+ahead = '[⇡${count}](bold blue) '
+diverged = '[⇡${ahead_count}⇣${behind_count}](bold cyan) '
+behind = '[⇣${count}](bold purple) '
+untracked = '[?${count}](bold red) '
+stashed = '[$](bold blue) '
+modified = '[~${count}](bold red) '
+staged = '[+${count}](bold green) '
+renamed = '[!${count}](bold red) '
+deleted = '[-${count}](bold red) '
+style = ''
+
+[fill]
+symbol = ' '
+
+[package]
+disabled = true
+
+[status]
+format = '[$symbol $status]($style) / '
+success_style = 'bold green'
+failure_style = 'bold red'
+symbol = ''
+success_symbol = ''
+not_executable_symbol = ''
+not_found_symbol = ''
+sigint_symbol = ''
+signal_symbol = ''
+disabled = false
+
+[time]
+format = '[$time]($style)'
+time_format = '%F %T'
+style = 'bold cyan'
+disabled = false
